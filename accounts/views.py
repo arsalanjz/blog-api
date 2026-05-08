@@ -12,7 +12,6 @@ class UserRegisterView(APIView):
 
     def post(self, request, *args, **kwargs):
         ser_data = UserRegisterSerializer(data=request.data)
-
         if ser_data.is_valid():
             ser_data.save()
             return Response({"message": "Ceated Account Successful"}, status=status.HTTP_201_CREATED)

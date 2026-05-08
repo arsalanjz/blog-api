@@ -8,7 +8,6 @@ from django.db.models.functions import Greatest
 
 
 class PostViewSet(viewsets.ModelViewSet):
-
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticatedOrReadOnly , IsAdminOrReadOnly , IsAuthorOrReadOnly]
 
@@ -17,9 +16,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = PostModel.objects.all().order_by('-created')
-
         search_query = self.request.query_params.get('search', None)
-
         if search_query:
             queryset = queryset.annotate(
                 similarity=Greatest(
@@ -27,7 +24,6 @@ class PostViewSet(viewsets.ModelViewSet):
                     TrigramSimilarity('content', search_query)
                 )
             ).filter(similarity__gt=0.02).order_by('-similarity')
-
         return queryset
 
 

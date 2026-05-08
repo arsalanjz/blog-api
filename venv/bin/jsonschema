@@ -1,0 +1,6 @@
+#!/home/arsalan/Project/Django/Blog-API/venv/bin/python
+import sys
+from jsonschema.cli import main
+if __name__ == '__main__':
+    sys.argv[0] = sys.argv[0].removesuffix('.exe')
+    sys.exit(main())

@@ -8,6 +8,7 @@ from .serializers import UserRegisterSerializer,UserProfileSerializer
 
 
 class UserRegisterView(APIView):
+    serializer_class = UserRegisterSerializer
 
     def post(self, request, *args, **kwargs):
         ser_data = UserRegisterSerializer(data=request.data)
@@ -19,7 +20,9 @@ class UserRegisterView(APIView):
 
 
 class UserProfileView(APIView):
+    serializer_class = UserProfileSerializer
     permission_classes = [IsAuthenticated]
+
     def get(self, request):
         serializer = UserProfileSerializer(request.user)
         return Response(serializer.data)

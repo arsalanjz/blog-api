@@ -3,6 +3,8 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .permissions import IsAdminOrReadOnly, IsAuthorOrReadOnly
 from .models import PostModel
 from .serializers import PostSerializer
+from django.contrib.postgres.search import TrigramSimilarity
+from django.db.models.functions import Greatest
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -14,7 +16,7 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(author=self.request.user)
 
     def get_queryset(self):
-        return PostModel.objects.all().order_by('-created')
+        queryset = PostModel.objects.all().order_by('-created')
 
         search_query = self.request.query_params.get('search', None)
 

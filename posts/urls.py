@@ -4,7 +4,7 @@ from . import views
 
 
 router = DefaultRouter()
-router.register(r'posts', views.PostViewSet, basename='post')
+router.register(r'post', views.PostViewSet, basename='post')
 
 app_name = 'posts'
 urlpatterns = [

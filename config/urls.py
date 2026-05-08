@@ -8,6 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     #path('' , include(home_urls , namespace='home')),
-    path('api/auth', include(accounts_urls , namespace='accounts')),
-    path('api/posts', include(posts_urls , namespace='posts')),
+    path('api/auth/', include(accounts_urls , namespace='accounts')),
+    path('api/posts/', include(posts_urls , namespace='posts')),
 ]

@@ -1,5 +1,6 @@
 from datetime import timedelta
 from pathlib import Path
+from .local_setting import private_secret_key, admin_debug,user_db, pssword_db
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,10 +10,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-vv+rvzcj($49#%1gk8!w+ykg(2ul01a*2(_o3co%i-ge(cgc-1'
 
+SECRET_KEY = private_secret_key
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = admin_debug
 
 ALLOWED_HOSTS = []
 
@@ -78,8 +79,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'blog_api_db',
-        'USER': 'blog_api_admin',
-        'PASSWORD': '123456789',
+        'USER': user_db,
+        'PASSWORD': password_db,
         'HOST': 'localhost',
         'PORT': '5432',
     }
